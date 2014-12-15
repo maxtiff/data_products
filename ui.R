@@ -15,10 +15,7 @@ shinyUI(pageWithSidebar(
   # Sidebar with a numeric input
 
     sidebarPanel(
-      numericInput('glucose', 'Glucose mg/dl', 90,
-                   min  = 50,
-                   max  = 200,
-                   step = 5),
+      numericInput('glucose', 'Glucose mg/dl', 90, min  = 50, max  = 200, step = 5),
       submitButton('Submit')
     ),
 
