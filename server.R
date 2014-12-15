@@ -7,17 +7,13 @@
 
 library(shiny)
 
-shinyServer(function(input, output) {
+diabetesRisk <- function(glucose) glucose/200
 
-  output$distPlot <- renderPlot({
+shinyServer(
+  function(input, output) {
 
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  output$inputValue <- renderPrint({input$glucose})
+  output$prediction <- renderPrint({diabetesRisk(input$glucose)})
 
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-
-  })
-
-})
+  }
+)

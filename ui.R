@@ -7,24 +7,28 @@
 
 library(shiny)
 
-shinyUI(fluidPage(
+shinyUI(pageWithSidebar(
 
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  headerPanel("Shiny Test: Diabetes Prediction"),
 
-  # Sidebar with a slider input for number of bins
-  sidebarLayout(
+  # Sidebar with a numeric input
+
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
+      numericInput('glucose', 'Glucose mg/dl', 90,
+                   min  = 50,
+                   max  = 200,
+                   step = 5),
+      submitButton('Submit')
     ),
 
-    # Show a plot of the generated distribution
+    # Show the prediction
     mainPanel(
-      plotOutput("distPlot")
+      h3('Results of prediction'),
+      h4('You entered'),
+      verbatimTextOutput("inputValue"),
+      h4('Which resulted in a prediction of '),
+      verbatimTextOutput('prediction')
     )
   )
-))
+)

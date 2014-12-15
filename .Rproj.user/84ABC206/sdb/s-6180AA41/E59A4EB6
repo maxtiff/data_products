@@ -1,12 +1,12 @@
 {
-    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nshinyUI(fluidPage(\n\n  # Application title\n  titlePanel(\"Old Faithful Geyser Data\"),\n\n  # Sidebar with a slider input for number of bins\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"bins\",\n                  \"Number of bins:\",\n                  min = 1,\n                  max = 50,\n                  value = 30)\n    ),\n\n    # Show a plot of the generated distribution\n    mainPanel(\n      plotOutput(\"distPlot\")\n    )\n  )\n))\n",
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nshinyUI(pageWithSidebar(\n\n  # Application title\n  headerPanel(\"Shiny Test: Diabetes Prediction\"),\n\n  # Sidebar with a numeric input\n\n    sidebarPanel(\n      numericInput('glucose', 'Glucose mg/dl', 90,\n                   min  = 50,\n                   max  = 200,\n                   step = 5),\n      submitButton('Submit')\n    ),\n\n    # Show the prediction\n    mainPanel(\n      h3('Results of prediction'),\n      h4('You entered'),\n      verbatimTextOutput(\"inputValue\"),\n      h4('Which resulted in a prediction of '),\n      verbatimTextOutput('prediction')\n    )\n  )\n)\n",
     "created" : 1418657487140.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2357192632",
+    "hash" : "3828201533",
     "id" : "E59A4EB6",
-    "lastKnownWriteTime" : 1402937768,
+    "lastKnownWriteTime" : 1418673261,
     "path" : "~/datasciencecoursera/data_products/ui.R",
     "project_path" : "ui.R",
     "properties" : {
