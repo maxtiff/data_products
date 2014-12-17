@@ -4,7 +4,7 @@ library(shiny)
 shinyUI(fluidPage(theme = "bootstrap.css",
 
   # Application title
-  titlePanel("Hello Shiny!"),
+  titlePanel("Test!"),
 
   # Sidebar with a slider input for the number of bins
   sidebarLayout(
