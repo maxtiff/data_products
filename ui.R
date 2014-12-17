@@ -1,31 +1,24 @@
-
-# This is the user-interface definition of a Shiny web application.
-# You can find out more about building applications with Shiny here:
-#
-# http://shiny.rstudio.com
-#
-
 library(shiny)
 
-shinyUI(pageWithSidebar(
+# Define UI for application that draws a histogram
+shinyUI(fluidPage(theme = "bootstrap.css",
 
   # Application title
-  headerPanel("Shiny Test: Diabetes Prediction"),
+  titlePanel("Hello Shiny!"),
 
-  # Sidebar with a numeric input
-
+  # Sidebar with a slider input for the number of bins
+  sidebarLayout(
     sidebarPanel(
-      numericInput('glucose', 'Glucose mg/dl', 90, min  = 50, max  = 200, step = 5),
-      submitButton('Submit')
+      sliderInput("bins",
+                  "Number of bins:",
+                  min = 1,
+                  max = 50,
+                  value = 30)
     ),
 
-    # Show the prediction
+    # Show a plot of the generated distribution
     mainPanel(
-      h3('Results of prediction'),
-      h4('You entered'),
-      verbatimTextOutput("inputValue"),
-      h4('Which resulted in a prediction of '),
-      verbatimTextOutput('prediction')
+      plotOutput("distPlot")
     )
   )
-)
+))
