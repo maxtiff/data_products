@@ -118,40 +118,40 @@ get.typeURL <- function() {
 
 }
 
-## Pull metadata JSON file to determine appropriate window size.
-get.metadata <- function(series) {
+# ## Pull metadata JSON file to determine appropriate window size.
+# get.metadata <- function(series) {
 
-  # pulls information about series from API
-  # needs restructured
-  base <- get.dirURL()
-  key <- get.APIKey()
-  api <- paste(base,key,sep="?")
-  series.base <- "series_id"
-  series.id <- paste(series.base,series,sep="=")
-  file.type <- get.fileType()
-  meta.url <- paste(api,series.id,file.type,sep="&")
+#   # pulls information about series from API
+#   # needs restructured
+#   base <- get.dirURL()
+#   key <- get.APIKey()
+#   api <- paste(base,key,sep="?")
+#   series.base <- "series_id"
+#   series.id <- paste(series.base,series,sep="=")
+#   file.type <- get.fileType()
+#   meta.url <- paste(api,series.id,file.type,sep="&")
 
-  return(fromJSON(meta.url))
+#   return(fromJSON(meta.url))
 
-}
+# }
 
-get.allvintages <- function(series) {
+# get.allvintages <- function(series) {
 
-  base <- get.dirURL()
-  type <- "vintagedates"
-  vints <- paste(base,type,sep="/")
-  key <- get.APIKey()
-  api <- paste(vints,key,sep="?")
-  series.base <- "series_id"
-  series.id <- paste(series.base,series,sep="=")
-  file.type <- get.fileType()
-  vint.query <- paste(api,series.id,file.type,sep="&")
+#   base <- get.dirURL()
+#   type <- "vintagedates"
+#   vints <- paste(base,type,sep="/")
+#   key <- get.APIKey()
+#   api <- paste(vints,key,sep="?")
+#   series.base <- "series_id"
+#   series.id <- paste(series.base,series,sep="=")
+#   file.type <- get.fileType()
+#   vint.query <- paste(api,series.id,file.type,sep="&")
 
-  object <- fromJSON(vint.query)
+#   object <- fromJSON(vint.query)
 
-  return(data.frame(object$vintage_dates))
+#   return(data.frame(object$vintage_dates))
 
-}
+# }
 
 
 ## Url to pull series observations
@@ -174,16 +174,16 @@ get.finalURL <- function() {
 
 }
 
-get.vintage <- function(date) {
+# get.vintage <- function(date) {
 
-  base <- get.finalURL()
-  param <- "vintage_dates"
-  vint <- date
-  query <- paste(param,vint,sep="=")
+#   base <- get.finalURL()
+#   param <- "vintage_dates"
+#   vint <- date
+#   query <- paste(param,vint,sep="=")
 
-  return(paste(base,query,sep="&"))
+#   return(paste(base,query,sep="&"))
 
-}
+# }
 
 get.JSON <- function(id) {
 

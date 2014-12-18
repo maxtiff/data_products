@@ -1,8 +1,15 @@
+## Source all required scripts.
+# required.scripts <- c('global.R','novelty_detector.R')
+# sapply(required.scripts, source, .GlobalEnv)
+
+## Load required libraries
 library(shiny)
-library(rCharts)
+# library(rCharts)
+# library(ggvis)
 
 # Define server logic for random distribution application
 shinyServer(function(input, output) {
+
 
   # Reactive expression to generate the requested distribution. This is 
   # called whenever the inputs change. The output renderers defined 
@@ -17,6 +24,13 @@ shinyServer(function(input, output) {
 
     dist(input$n)
   })
+
+
+  # output$dateRangeText  <- renderText({
+  #   paste("input$dateRange is", 
+  #     paste(as.character(input$dateRange), collapse = " to ")
+  #   )
+  # })
 
   # Generate a plot of the data. Also uses the inputs to build the 
   # plot label. Note that the dependencies on both the inputs and
@@ -37,6 +51,6 @@ shinyServer(function(input, output) {
 
   # Generate an HTML table view of the data
   output$table <- renderTable({
-    data.frame(Observation=data())
-  }, options = list(pageLength = 10))
+    data.frame(x=data())
+  })
 })
