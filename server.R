@@ -1,20 +1,42 @@
 library(shiny)
+library(rCharts)
 
-# Define server logic required to draw a histogram
+# Define server logic for random distribution application
 shinyServer(function(input, output) {
 
-  # Expression that generates a histogram. The expression is
-  # wrapped in a call to renderPlot to indicate that:
-  #
-  #  1) It is "reactive" and therefore should re-execute automatically
-  #     when inputs change
-  #  2) Its output type is a plot
+  # Reactive expression to generate the requested distribution. This is 
+  # called whenever the inputs change. The output renderers defined 
+  # below then all used the value computed from this expression
+  data <- reactive({  
+    dist <- switch(input$dist,
+                   norm = rnorm,
+                   unif = runif,
+                   lnorm = rlnorm,
+                   exp = rexp,
+                   rnorm)
 
-  output$distPlot <- renderPlot({
-    x    <- faithful[, 2]  # Old Faithful Geyser data
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    dist(input$n)
   })
+
+  # Generate a plot of the data. Also uses the inputs to build the 
+  # plot label. Note that the dependencies on both the inputs and
+  # the data reactive expression are both tracked, and all expressions 
+  # are called in the sequence implied by the dependency graph
+  output$plot <- renderPlot({
+    dist <- input$dist
+    n <- input$n
+
+    hist(data(), 
+         main=paste('r', dist, '(', n, ')', sep=''))
+  })
+
+  # Generate a summary of the data
+  output$summary <- renderPrint({
+    summary(data())
+  })
+
+  # Generate an HTML table view of the data
+  output$table <- renderTable({
+    data.frame(Observation=data())
+  }, options = list(pageLength = 10))
 })
