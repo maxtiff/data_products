@@ -1,7 +1,3 @@
-## Source all required scripts.
-# required.scripts <- c('global.R','novelty_detector.R')
-# sapply(required.scripts, source, .GlobalEnv)
-
 ## Load required libraries
 library(shiny)
 # library(rCharts)
@@ -38,11 +34,19 @@ shinyServer(function(input, output) {
   # the data reactive expression are both tracked, and all expressions
   # are called in the sequence implied by the dependency graph
   output$plot <- renderPlot({
+
+    input$goButton
+
     dist <- input$dist
     n <- input$n
-    input$goButton
+
+    outlierScores <- lofactor(data(), k = n/10)
+    outliers <- order(outlierScores, decreasing=T)[1:5]
+
+    col <- rep("black", n)
+    col[outliers] <- "red"
     plot(data(),
-         main=paste('r', dist, '(', n, ')', sep=''))
+          main=paste('r', dist, '(', n, ')', sep=''), pch = 19, col = col)
   })
 
   # Generate a summary of the data
@@ -53,9 +57,10 @@ shinyServer(function(input, output) {
   })
 
   # Generate an HTML table view of the data
-  output$table <- renderTable({
+  output$table <- renderDataTable({
     input$goButton
 
     data.frame(x=data())
   })
+
 })
