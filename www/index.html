@@ -9,39 +9,10 @@
 </head>
  
 <body>
-<div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">
-                    <img class="brand" src="assets/FRED.png">
-                </a>
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-        <ul class="nav navbar-nav navbar-right">
-          <br>
-          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Goto <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-        </div>
-      </div>
-    </div>
+
   <div class="container">
-    <br><br><br>
     <div class="page-header" id="banner">
-      <h1>HTML UI<small>Test Shiny App</small></h1>
+      <h1>Outlier Detection<small>Data Science Specialization Shiny App</small></h1>
     </div>
 
     <div class="row">
@@ -59,8 +30,11 @@
        
           <p>
             <label>Number of observations:</label><br /> 
-            <input type="number" class="form-control" name="n" value="500" min="1" max="1000" />
+            <input type="number" class="form-control" name="n" value="50" min="1" max="100" />
           </p>
+            <div>
+              <button id = "goButton" type="submit" class="btn btn-primary">Submit</button>
+            </div>
           </form>
         </div>
       </div>

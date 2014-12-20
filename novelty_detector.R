@@ -1,4 +1,4 @@
-detect.outliers <- function(data,plot=TRUE) {
+detectOutliers <- function(data,plot=TRUE) {
 
   ## Read in data.
   x <- as.ts(data)
