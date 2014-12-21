@@ -57,10 +57,10 @@ shinyServer(function(input, output) {
   })
 
   # Generate an HTML table view of the data
-  output$table <- renderdeTable({
-    input$goButton
-
-    data.frame(x=data())
-  })
+#   output$table <- renderdeTable({
+#     input$goButton
+#
+#     data.frame(x=data())
+#   })
 
 })
